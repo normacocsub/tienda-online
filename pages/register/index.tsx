@@ -89,6 +89,7 @@ const Register = () => {
                 </Form.Item>
                 <Form.Item label="Direccion" name={'direccion'}
                     rules={[
+                        { required: true, message: 'Por favor completa la direccion' },
                         { min: 3, message: 'La direccion debe tener al menos 3 carácter' },
                         { max: 100, message: 'La direccion no puede tener más de 100 caracteres' }]}>
                     <Input type="text" />
@@ -120,7 +121,8 @@ const Register = () => {
 
                 <Form.Item label="Contraseña" name={'password'}
                     rules={[{ required: true, message: 'Por favor completa la contraseña' },
-                    { validator: validatePassword },]}>
+                    { validator: validatePassword },
+                    { max: 20, message: 'La contraseña no puede tener más de 20 caracteres' }]}>
                     <Input type="text" />
                 </Form.Item>
 
