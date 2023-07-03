@@ -1,0 +1,9 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    min-width: 800px;
+    justify-content: space-between;
+    .titleContent {
+        min-width: 400px;
+    }
+}
