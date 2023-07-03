@@ -1,0 +1,33 @@
+.headerSection {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 1%;
+    .buttonLogin {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        .logInButton {
+            height: 40px;
+            border-radius: 6px;
+            border: 1px solid blue;
+            font-weight: 500;
+            color: blue;
+        }
+        .logUpButton {
+            height: 40px;
+            border-radius: 6px;
+            border: 1px solid #800000;
+            font-weight: 500;
+            color: #800000;
+        }
+    }
+}
+
+.sider {
+    position: sticky;
+    top: 0;
+}
