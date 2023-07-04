@@ -1,0 +1,44 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 120px;
+    height: 100vh;
+    background: linear-gradient(#002140, #000F2B);
+    .title {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 90%;
+        color: white;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+    .LoginSection {
+        border-radius: 6px;
+        padding: 4%;
+        box-shadow: 0 0 20px #91C9FF; 
+        background-color: #004C80;
+        h2, h1 {
+            color: white;
+            font-weight: 700;
+        }
+        .form {
+            gap: 10px;
+            .item label {
+                color: white;
+            }
+            .button {
+                height: 40px;
+                width: 100px;
+                font-weight: 700;
+                font-size: 17px;
+            }
+        }
+        input {
+            width: 500px;
+            height: 40px;
+            border: 1px solid black;
+        }
+    }
+}

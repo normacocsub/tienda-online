@@ -32,7 +32,6 @@ const Register = () => {
     const validatePassword = (_: any, value: string) => {
         // Verificar que la contraseña cumple con los criterios deseados
         if (value && value.length >= 6) {
-            // Utilizar expresiones regulares para verificar la presencia de una mayúscula, un carácter especial y un número
             const regexUppercase = /[A-Z]/;
             const regexSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
             const regexNumber = /[0-9]/;
@@ -53,10 +52,7 @@ const Register = () => {
         }
     };
 
-    const isFormValid = () => {
-        const errors = form.getFieldsError();
-        return !errors.some((error) => error.errors.length > 0);
-    };
+    
 
     return <LayoutUser>
         <div className={styles.content}><h1 style={{ fontSize: 24 }}>Registro Usuario</h1>
