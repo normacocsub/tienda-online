@@ -1,0 +1,22 @@
+.content {
+    min-height: 100vh;
+    padding: 2%;
+    border-radius: 6px;
+    .contentCards {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 30px;
+    }
+    .headerSection {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .search {
+            width: 300px;
+        }
+    }
+    .title {
+        font-size: 24px;
+    }
+}

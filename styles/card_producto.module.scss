@@ -1,0 +1,38 @@
+.content {
+    border: 1px solid gray;
+    border-radius: 6px;
+    max-width: 300px;
+    padding: 1% 2% 2% 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    &:hover {
+        border-top: 2px solid orange;
+        scale: 1.1;
+    }
+    .actionCard {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        .addProduct {
+            height: 40px;
+            background-color: #91C9FF;
+        }
+        .viewProduct {
+            height: 40px;
+            background-color: orange;
+        }
+    }
+    .descriptionCard {
+        text-align: justify;
+        border-bottom: 1px solid black;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+        min-height: 120px;
+        max-height: 120px;
+    }
+    .titleCard {
+        border-bottom: 1px solid black;
+    }
+}
