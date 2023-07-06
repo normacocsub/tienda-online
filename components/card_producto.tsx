@@ -13,22 +13,25 @@ const CardProducto = ({codigo, nombre, caracteristica, precio,cantidad}: CardPro
     const router = useRouter();
     const agregarCarrito = () => {
         let carritos = JSON.parse(localStorage.getItem('carrito')) ?? []
+        let encontrado = false
         if(carritos.length > 0) {
             carritos = carritos.map(function(objeto: any) {
                 if (objeto.codigo === codigo) {
+                  encontrado = true;
                   return { ...objeto, cantidad: (objeto.cantidad +=1) };
                 }
                 return objeto;
             });
             localStorage.setItem('carrito', JSON.stringify(carritos))
             router.push('/carrito')
-            return
+            if (encontrado) return
         }
         const json = {
             codigo: codigo,
             cantidad: 1
         }
         carritos.push(json)
+        localStorage.setItem('carrito', JSON.stringify(carritos))
         router.push('/carrito')
     }
     return <div className={styles.content}>

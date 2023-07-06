@@ -62,7 +62,7 @@ const Register = () => {
                 onFinish={onFinish}>
                 <Form.Item label="Cedula" name={'cedula'}
                     rules={[{ required: true, message: 'Por favor completa la cedula' },
-                    { min: 1, message: 'La cedula debe tener al menos 4 carácter' },
+                    { min: 1, message: 'La cedula debe tener al menos 1 carácter' },
                     { max: 20, message: 'La cedula no puede tener más de 11 caracteres' }]}>
                     <Input type="number" />
                 </Form.Item>

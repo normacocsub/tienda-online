@@ -6,12 +6,14 @@ import {
   TeamOutlined,
   UserOutlined,
   HomeOutlined,
-  AccountBookOutlined
+  AccountBookOutlined,
+  ShoppingCartOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Button, Layout, Menu, theme } from 'antd';
+import { Badge, Button, Layout, Menu, theme } from 'antd';
 import { useRouter } from 'next/router';
 import styles from '../styles/layout.module.scss'
+import { ROLES } from '../utils/constants';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -32,17 +34,19 @@ function getItem(
 }
 const urls = {
   '1': '',
+  '2': 'productos/ver',
   '3': 'productos/registro_producto',
   '4': 'productos/consultar_productos',
   '6': 'ventas/registro_venta',
-  '7': 'ventas/consultar_ventas',
+  '7': 'compras/mis_compras',
 }
 const items: MenuItem[] = [
   getItem('Home', '1', <HomeOutlined />),
-  
-  getItem('Ventas', '5', <AccountBookOutlined />, [
-    getItem('Comprar', '6'),
-    getItem('Consultar Ventas', '7')
+  getItem('Productos', '1', <PieChartOutlined />, [
+    getItem('Ver Producto', '2')
+  ]),
+  getItem('Compras', '5', <AccountBookOutlined />, [
+    getItem('Consultar Compras', '7')
   ]),
   //   getItem('User', 'sub1', <UserOutlined />, [
   //     getItem('Tom', '3'),
@@ -58,9 +62,9 @@ const itemsAdmin: MenuItem[] = [
     getItem('Consultar Productos', '4')
   ]),
 
-  getItem('Ventas', '5', <AccountBookOutlined />, [
-    getItem('Consultar Ventas', '7')
-  ]),
+  // getItem('Ventas', '5', <AccountBookOutlined />, [
+  //   getItem('Consultar Ventas', '7')
+  // ]),
 ]
 
 const menuValid = {
@@ -75,6 +79,7 @@ const LayoutUser: FunctionComponent<LayoutProps> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [logged, setLogged] = useState(false)
   const [rol, setRol] = useState(2)
+  const [totalCarrito, setTotalCarrito] = useState(0)
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -84,6 +89,18 @@ const LayoutUser: FunctionComponent<LayoutProps> = ({ children }) => {
     console.log('click ', e.key);
     router.push(`/${urls[e.key]}`);
   };
+
+  const cerrarSesion = () => {
+    localStorage.removeItem('login')
+    setLogged(false)
+    setRol(2)
+    router.push('/')
+  }
+
+  useEffect(() => {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) ?? []
+    setTotalCarrito(carrito.length)
+  }, [])
   useEffect(() => {
     let login = localStorage.getItem('login');
     if (login) {
@@ -111,8 +128,18 @@ const LayoutUser: FunctionComponent<LayoutProps> = ({ children }) => {
           style={{ background: colorBgContainer, alignContent: 'flex-end' }} >
           <h2>Tienda Online</h2>
           <div className={styles.buttonLogin}>
-            <Button className={styles.logInButton} onClick={() => router.push('/login')}>Sing In</Button>
-            <Button className={styles.logUpButton} onClick={() => router.push('/register')}>Sing Up</Button>
+            {!logged && <>
+              <Button className={styles.logInButton} onClick={() => router.push('/login')}>Sing In</Button>
+              <Button className={styles.logUpButton} onClick={() => router.push('/register')}>Sing Up</Button>
+            </>
+            }
+            {
+              logged &&
+              <Button className={styles.logUpButton} onClick={() => cerrarSesion()}>Log Out</Button>
+            }
+            {rol === ROLES.Cliente && <Badge count={totalCarrito}>
+              <ShoppingCartOutlined onClick={() => router.push('/carrito')} />
+            </Badge>}
           </div>
         </Header>
         <Content style={{ margin: '0 16px' }}>
