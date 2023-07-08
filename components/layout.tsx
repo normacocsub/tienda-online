@@ -40,6 +40,8 @@ const urls = {
   '4': 'productos/consultar_productos',
   '6': 'ventas/registro_venta',
   '7': 'compras/mis_compras',
+  '8': 'provedores/register',
+  '9': 'provedores/consultar'
 }
 const items: MenuItem[] = [
   getItem('Home', '1', <HomeOutlined />),
@@ -61,6 +63,10 @@ const itemsAdmin: MenuItem[] = [
   getItem('Productos', '1', <PieChartOutlined />, [
     getItem('Registrar Producto', '3'),
     getItem('Consultar Productos', '4')
+  ]),
+  getItem('Provedor', '5', <AccountBookOutlined />, [
+    getItem('Registrar Provedor', '8'),
+    getItem('Consultar Provedor', '9'),
   ]),
 
   // getItem('Ventas', '5', <AccountBookOutlined />, [

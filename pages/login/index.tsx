@@ -19,6 +19,7 @@ const Login = () => {
             Correo: values.correo,
             Password:values.password,
         })
+        console.log(response)
         if (response) {
             router.push('/')
             localStorage.setItem('login', JSON.stringify({ correo: response.correo, rol: response.rolId }))

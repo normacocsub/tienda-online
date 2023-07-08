@@ -1,19 +1,23 @@
 import { Button, Form, Input } from "antd";
-import LayoutUser from "../../components/layout";
+import LayoutUser from "../../components/layout"
+import styles from "../../styles/pages/register_provedor.module.scss"
 import { useRouter } from "next/router";
-import styles from '../../styles/pages/register_user.module.scss';
+import { apiRestGet, apiRestPost, apiRestPut } from "../../services/auth";
 import { useEffect, useState } from "react";
-import { useForm } from "antd/lib/form/Form";
-import { ROLES } from "../../utils/constants";
-import { apiRestPost } from "../../services/auth";
+
 
 const Register = () => {
     const [form] = Form.useForm();
     const router = useRouter();
+    const [isModifying, setIsModifying] = useState(false);
     const onFinish = async (values: any) => {
-        values.rol = ROLES.Cliente;
-        await apiRestPost('usuario', values)
-        router.push('/login')
+        if (isModifying) {
+            await apiRestPut('provedor', values)
+            router.push('/provedores/consultar')
+            return
+        }
+        await apiRestPost('provedor', values)
+        router.push('/provedores/consultar')
     };
     const formItemLayout = {
         labelCol: {
@@ -26,44 +30,34 @@ const Register = () => {
         },
     };
 
-
-
-    const validatePassword = (_: any, value: string) => {
-        // Verificar que la contraseña cumple con los criterios deseados
-        if (value && value.length >= 6) {
-            const regexUppercase = /[A-Z]/;
-            const regexSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
-            const regexNumber = /[0-9]/;
-
-            if (
-                regexUppercase.test(value) &&
-                regexSpecialChar.test(value) &&
-                regexNumber.test(value)
-            ) {
-                return Promise.resolve();
-            } else {
-                return Promise.reject(
-                    "La contraseña debe tener al menos 6 caracteres, incluyendo una mayúscula, un carácter especial y un número."
-                );
+    useEffect(() => {
+        const { id } = router.query;
+        if (id) {
+          setIsModifying(true);
+          const fetchProviderData = async () => {
+            try {
+              const providerData = await apiRestGet('provedor/buscar', {
+                nit: id
+              });
+              form.setFieldsValue(providerData);
+            } catch (error) {
+              console.error(error);
             }
-        } else {
-            return Promise.reject("La contraseña debe tener al menos 6 caracteres.");
+          };
+          fetchProviderData();
         }
-    };
-
-    
-
+      }, [router.query, form]);
     return <LayoutUser>
-        <div className={styles.content}><h1 style={{ fontSize: 24 }}>Registro Usuario</h1>
+        <div className={styles.content}><h1 style={{ fontSize: 24 }}>{ isModifying ? 'Modificar Proveedor' :'Registro Proveedor'}</h1>
             <Form {...formItemLayout} className={styles.form}
                 form={form}
                 name="register"
                 onFinish={onFinish}>
-                <Form.Item label="Cedula" name={'cedula'}
-                    rules={[{ required: true, message: 'Por favor completa la cedula' },
-                    { min: 1, message: 'La cedula debe tener al menos 1 carácter' },
-                    { max: 9, message: 'La cedula no puede tener más de 9 caracteres' }]}>
-                    <Input type="number" />
+                <Form.Item label="NIT" name={'nit'}
+                    rules={[{ required: true, message: 'Por favor completa el nit' },
+                    { min: 1, message: 'El nit debe tener al menos 1 carácter' },
+                    { max: 9, message: 'El nit no puede tener más de 9 caracteres' }]}>
+                    <Input type="text" disabled={isModifying}/>
                 </Form.Item>
 
                 <Form.Item label="Nombre" name={'nombre'}
@@ -107,28 +101,18 @@ const Register = () => {
                     <Input type="number" />
                 </Form.Item>
 
-                <Form.Item label="Correo Electronico" name={'correo'}
-                    rules={[{ required: true, message: 'Por favor completa el correo' },
-                    { type: 'email', message: 'Ingrese un correo electrónico válido' },
-                    { max: 50, message: 'El correo electronico no puede tener más de 50 caracteres' }]}>
-                    <Input type="text" />
-                </Form.Item>
+                
 
-                <Form.Item label="Contraseña" name={'password'}
-                    rules={[{ required: true, message: 'Por favor completa la contraseña' },
-                    { validator: validatePassword },
-                    { max: 20, message: 'La contraseña no puede tener más de 20 caracteres' }]}>
-                    <Input type="text" />
-                </Form.Item>
+                
 
                 <Form.Item className={styles.button}>
                     <Button type="primary" htmlType="submit">
-                        Guardar
+                        { isModifying ? 'Modificar' : 'Guardar'}
                     </Button>
                 </Form.Item>
-            </Form></div>
+            </Form>
+        </div>
     </LayoutUser>
 }
 
 export default Register;
-

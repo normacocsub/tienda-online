@@ -36,6 +36,12 @@ const ConsultarProductos = () => {
             dataIndex: 'precio',
             key: 'precio',
         },
+        {
+            title: 'action',
+            dataIndex: '',
+            key: 'x',
+            render: (text, record) => <a href={`productos/registro_producto/${record.codigo}`}>Modificar</a>
+        }
     ];
 
     const consultarProductos = async () => {
