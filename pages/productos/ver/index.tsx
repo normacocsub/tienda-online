@@ -3,6 +3,7 @@ import CardProducto from "../../../components/card_producto"
 import LayoutUser from "../../../components/layout"
 import styles from "../../../styles/pages/productos.module.scss"
 import { Input } from "antd"
+import { apiRestGet } from "../../../services/auth"
 
 
 const {Search} = Input
@@ -10,8 +11,12 @@ const {Search} = Input
 const VerProducto = () => {
     const [productos, setProductos] = useState([])
 
+    const consultarProductos = async () => {
+        const response = await apiRestGet('producto')
+        setProductos(response)
+    } 
     useEffect(() => {
-        setProductos(JSON.parse(localStorage.getItem("productos")) ?? [])
+        consultarProductos()
     }, [])
     return <LayoutUser>
         <div className={styles.content}>

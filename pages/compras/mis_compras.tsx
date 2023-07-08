@@ -2,14 +2,15 @@ import { Table } from "antd";
 import LayoutUser from "../../components/layout"
 import { useEffect, useState } from "react";
 import { render } from "sass";
+import { apiRestGet } from "../../services/auth";
 
 const MisCompras = () => {
     const [dataSource, setDataSource] = useState([])
     const columns = [
         {
           title: 'Codigo',
-          dataIndex: 'codigo',
-          key: 'codigo',
+          dataIndex: 'id',
+          key: 'id',
         },
         {
           title: 'Fecha',
@@ -39,8 +40,17 @@ const MisCompras = () => {
         }
       ];
 
+    const getComprasUser = async () => {
+      const login = JSON.parse(localStorage.getItem("login"))
+      const response = await apiRestGet('factura', {
+        correo: login.correo
+      });
+      if (response) {
+        setDataSource(response);
+      }
+    }
     useEffect(() => {
-        setDataSource(JSON.parse(localStorage.getItem("compras")) ?? [])
+        getComprasUser()
     }, [])
     return <LayoutUser>
         <h1>Mis Compras</h1>

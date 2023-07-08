@@ -4,20 +4,21 @@ import { Button, Form, Input } from 'antd';
 import styles from "../../../styles/pages/registro_producto.module.scss";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from 'uuid';
+import { apiRestPost } from "../../../services/auth";
 
 
 const RegistroProducto = () => {
     const [form] = Form.useForm();
     const router = useRouter();
 
-    const onFinish = (values: any) => {
-        let productos = JSON.parse(localStorage.getItem('productos')) ?? []
+    const onFinish = async (values: any) => {
         const guid = uuidv4();
 
         values.key = guid.toString();
         values.codigo = guid.toString();
-        productos.push(values)
-        localStorage.setItem('productos', JSON.stringify(productos));
+        values.precio = Number(values.precio)
+        values.cantidad = Number(values.cantidad)
+        await apiRestPost('producto', values)
         form.resetFields();
         router.push('/productos/consultar_productos')
     };

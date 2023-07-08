@@ -2,18 +2,26 @@ import { Button, Form, Input } from "antd";
 import styles from '../../styles/pages/login.module.scss';
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { apiRestPost } from "../../services/auth";
 
 const Login = () => {
     const router = useRouter();
     const [form] = Form.useForm();
     const [errorLogin, setErrorLogin] = useState(false)
 
-    const onFinish = (values: any) => {
+    const onFinish = async (values: any) => {
         setErrorLogin(false)
-        const users = JSON.parse(localStorage.getItem('usuarios')) ?? []
-        const user = users.find((e: any) => e.correo === values.correo)
-        if (user && (user.password === values.password)) {
-            localStorage.setItem('login', JSON.stringify({ correo: user.correo, rol: user.rol }))
+        const response = await apiRestPost('usuario/login', {
+            Cedula: "",
+            Nombre: "",
+            Apellido: "",
+            Direccion: "",
+            Correo: values.correo,
+            Password:values.password,
+        })
+        if (response) {
+            router.push('/')
+            localStorage.setItem('login', JSON.stringify({ correo: response.correo, rol: response.rolId }))
             router.push('/')
             return
         }

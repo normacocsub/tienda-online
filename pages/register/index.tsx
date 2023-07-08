@@ -5,15 +5,14 @@ import styles from '../../styles/pages/register_user.module.scss';
 import { useEffect, useState } from "react";
 import { useForm } from "antd/lib/form/Form";
 import { ROLES } from "../../utils/constants";
+import { apiRestPost } from "../../services/auth";
 
 const Register = () => {
     const [form] = Form.useForm();
     const router = useRouter();
-    const onFinish = (values: any) => {
-        let usuarios = JSON.parse(localStorage.getItem('usuarios')) ?? []
+    const onFinish = async (values: any) => {
         values.rol = ROLES.Cliente;
-        usuarios.push(values)
-        localStorage.setItem('usuarios', JSON.stringify(usuarios))
+        await apiRestPost('usuario', values)
         router.push('/login')
     };
     const formItemLayout = {

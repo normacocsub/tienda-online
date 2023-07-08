@@ -4,6 +4,7 @@ import styles from '../../styles/pages/carrito.module.scss'
 import { Button, Col, InputNumber, Row, Slider } from "antd";
 import { DeleteOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid';
+import { apiRestGet, apiRestPost } from "../../services/auth";
 
 const Carrito = () => {
     const [productos, setProductos] = useState([])
@@ -31,23 +32,42 @@ const Carrito = () => {
 
     
 
-    const realizarPago  = () => {
+    const realizarPago  = async () => {
         let productosCarrito = []
         let compras = JSON.parse(localStorage.getItem("compras")) ?? []
         carrito.forEach((item) => {
             let productCarrito = modificarProducto(item.codigo, item.cantidad)
-            productosCarrito.push(productCarrito)
+            var json = {
+                id: 0,
+                cantidad: item.cantidad,
+                precio: productCarrito.precio,
+                fecha: (new Date()).toISOString(),
+                producto: productCarrito
+            }
+            productosCarrito.push(json)
         })
-        compras.push({codigo: uuidv4().toString(), fecha: Date.now().toLocaleString(), subTotal: precios.subTotal,
-            iva: precios.iva, total: precios.total, productos: productosCarrito })
-        localStorage.setItem("compras", JSON.stringify(compras))
-        localStorage.removeItem("carrito")
-        router.push('/compras/mis_compras')
+        const login = JSON.parse(localStorage.getItem('login'))
+        const jsonUser = {
+            cedula: '',
+            nombre: '',
+            apellido: '',
+            direccion: '',
+            correo: login.correo,
+            password: ''
+        }
+        let jsonCompra = {id:0, fecha: (new Date()).toISOString(), subTotal: precios.subTotal,
+            iva: precios.iva, total: precios.total, detalles: productosCarrito, usuario: jsonUser }
+        const response = await apiRestPost('factura', jsonCompra)
+        if (response) {
+            localStorage.removeItem("carrito")
+            router.push('/compras/mis_compras')
+        }
+        
     }
 
     const modificarProducto = (codigo, cantidad) => {
-        const products = JSON.parse(localStorage.getItem('productos')) ?? []
-        let productCarrito = {}
+        const products = productos
+        let productCarrito;
         const [indice, productoEncontrado] = products.reduce(
             (acc, item, index) => (item.codigo === codigo ? [index, item] : acc),
             [-1, null]
@@ -56,18 +76,20 @@ const Carrito = () => {
         productCarrito = productoEncontrado
         products[indice] = productoEncontrado
         setProductos(products)
-        localStorage.setItem('productos', JSON.stringify(products))
         return productCarrito
     }
 
+    const consultarProductos = async () => {
+        const response = await apiRestGet('producto')
+        setProductos(response ?? [])
+    } 
     useEffect(() => {
-        
-        const productosS = JSON.parse(localStorage.getItem('productos')) ?? []
-        setProductos(productosS)
+        consultarProductos()
         setCarrito(JSON.parse(localStorage.getItem('carrito')) ?? [])
     }, [])
 
     useEffect(() => {
+        
         const calcularValores = () => {
             let subTotal = 0;
             let iva = 0;
@@ -75,6 +97,7 @@ const Carrito = () => {
     
             carrito.forEach((item) => {
                 const producto = (productos).find((item2) => item2.codigo === item.codigo);
+                if (!producto) return;
                 subTotal += (Number(producto.precio) * Number(item.cantidad));
                 iva += (Number(producto.precio) * 0.19) * Number(item.cantidad);
             });
@@ -92,7 +115,7 @@ const Carrito = () => {
                 {
                     carrito?.map((item: any, index: number) => {
                         const producto = searchProduct(item.codigo);
-
+                        if (!producto) return
                         const onChange = (newValue: number) => {
                             actualizarCantidad(item.codigo, newValue);
                         };

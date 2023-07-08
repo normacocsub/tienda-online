@@ -2,6 +2,7 @@
 import { Input, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import LayoutUser from "../../../components/layout";
+import { apiRestGet } from "../../../services/auth";
 
 
 const { Search } = Input;
@@ -37,11 +38,13 @@ const ConsultarProductos = () => {
         },
     ];
 
-    
+    const consultarProductos = async () => {
+        const response = await apiRestGet('producto')
+        setDataSource(response)
+    } 
 
     useEffect(() => {
-        let productos = JSON.parse(localStorage.getItem('productos'));
-        setDataSource(productos);
+        consultarProductos()
     }, [])
 
     useEffect(() => {
