@@ -14,6 +14,7 @@ import { Badge, Button, Layout, Menu, theme } from 'antd';
 import { useRouter } from 'next/router';
 import styles from '../styles/layout.module.scss'
 import { ROLES } from '../utils/constants';
+import { apiRestGet } from '../services/auth';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -97,18 +98,26 @@ const LayoutUser: FunctionComponent<LayoutProps> = ({ children }) => {
     router.push('/')
   }
 
+  const buscarUser = async (correo) => {
+    const response = await apiRestGet('usuario/buscar', {
+      correo
+    })
+    if (response) {
+      setRol(response.rolId)
+    }
+  }
+
   useEffect(() => {
     const carrito = JSON.parse(localStorage.getItem("carrito")) ?? []
     setTotalCarrito(carrito.length)
   }, [])
+  
   useEffect(() => {
     let login = localStorage.getItem('login');
     if (login) {
       setLogged(true)
-      const users = JSON.parse(localStorage.getItem('usuarios'))
       const email = (JSON.parse(login)).correo
-      const user = users.find((e: any) => e.correo === email)
-      setRol(user.rol)
+      buscarUser(email)
       return
     }
     setLogged(false)
