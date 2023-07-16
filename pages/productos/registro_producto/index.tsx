@@ -42,24 +42,24 @@ const RegistroProducto = () => {
                 onFinish={onFinish}>
                 <Form.Item label="Nombre" name={'nombre'}
                     rules={[{ required: true, message: 'Por favor completa el nombre' }]}>
-                    <Input type="text"/>
+                    <Input type="text" id="nombre"/>
                 </Form.Item>
                 
                 <Form.Item label="Precio" name={'precio'} 
                     rules={[{ required: true, message: 'Por favor completa el precio' }]}>
-                    <Input type={'number'}/>
+                    <Input type={'number'} id="precio"/>
                 </Form.Item>
                 <Form.Item label="Caracteristica" name={'caracteristica'} 
                     rules={[{ required: true, message: 'Por favor completa las caracteristicas' }]}>
-                    <Input type="text"/>
+                    <Input type="text" id="caracteristica"/>
                 </Form.Item>
                 <Form.Item label="Cantidad" name={'cantidad'} 
                     rules={[{ required: true, message: 'Por favor completa la cantidad' }]}>
-                    <Input type="number"/>
+                    <Input type="number" id="cantidad"/>
                 </Form.Item>
 
                 <Form.Item className={styles.button}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" id="guardar">
                         Guardar
                     </Button>
                 </Form.Item>

@@ -1,0 +1,99 @@
+Date : 2023-07-14 22:50:52
+Directory : c:\Users\norma\Documents\GitHub\tienda-online
+Total : 41 files,  10148 codes, 20 comments, 235 blanks, all 10403 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          2 |      8,099 |          0 |          2 |      8,101 |
+| TypeScript JSX     |         18 |      1,452 |         18 |        162 |      1,632 |
+| SCSS               |         10 |        326 |          0 |         15 |        341 |
+| CSS                |          2 |        135 |          0 |         22 |        157 |
+| JavaScript         |          4 |         79 |          2 |         17 |         98 |
+| JSON with Comments |          2 |         32 |          0 |          2 |         34 |
+| Markdown           |          1 |         20 |          0 |         15 |         35 |
+| XML                |          1 |          4 |          0 |          0 |          4 |
+| Properties         |          1 |          1 |          0 |          0 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                        | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                           |         41 |     10,148 |         20 |        235 |     10,403 |
+| . (Files)                                                                                   |          7 |      8,157 |          1 |         21 |      8,179 |
+| __test__                                                                                    |          1 |        150 |          9 |         10 |        169 |
+| components                                                                                  |          3 |        302 |          8 |         36 |        346 |
+| components (Files)                                                                          |          2 |        207 |          8 |         20 |        235 |
+| components\modals                                                                           |          1 |         95 |          0 |         16 |        111 |
+| pages                                                                                       |         15 |      1,009 |          2 |        117 |      1,128 |
+| pages (Files)                                                                               |          3 |         87 |          0 |         15 |        102 |
+| pages\api                                                                                   |          1 |          3 |          1 |          2 |          6 |
+| pages\carrito                                                                               |          1 |        180 |          0 |         17 |        197 |
+| pages\compras                                                                               |          1 |         58 |          0 |          4 |         62 |
+| pages\login                                                                                 |          1 |         54 |          0 |          5 |         59 |
+| pages\productos                                                                             |          3 |        168 |          0 |         26 |        194 |
+| pages\productos\consultar_productos                                                         |          1 |         74 |          0 |         12 |         86 |
+| pages\productos\registro_producto                                                           |          1 |         63 |          0 |          8 |         71 |
+| pages\productos\ver                                                                         |          1 |         31 |          0 |          6 |         37 |
+| pages\provedores                                                                            |          2 |        191 |          0 |         22 |        213 |
+| pages\register                                                                              |          1 |        161 |          1 |         15 |        177 |
+| pages\ventas                                                                                |          2 |        107 |          0 |         11 |        118 |
+| pages\ventas\consultar_ventas                                                               |          1 |          7 |          0 |          2 |          9 |
+| pages\ventas\registro_venta                                                                 |          1 |        100 |          0 |          9 |        109 |
+| public                                                                                      |          1 |          4 |          0 |          0 |          4 |
+| services                                                                                    |          1 |         61 |          0 |         14 |         75 |
+| styles                                                                                      |         12 |        461 |          0 |         37 |        498 |
+| styles (Files)                                                                              |          4 |        210 |          0 |         23 |        233 |
+| styles\pages                                                                                |          8 |        251 |          0 |         14 |        265 |
+| utils                                                                                       |          1 |          4 |          0 |          0 |          4 |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                    | language           | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\norma\Documents\GitHub\tienda-online\.env                                          | Properties         |          1 |          0 |          0 |          1 |
+| c:\Users\norma\Documents\GitHub\tienda-online\.eslintrc.json                                | JSON with Comments |          3 |          0 |          1 |          4 |
+| c:\Users\norma\Documents\GitHub\tienda-online\README.md                                     | Markdown           |         20 |          0 |         15 |         35 |
+| c:\Users\norma\Documents\GitHub\tienda-online\__test__\register.test.tsx                    | TypeScript JSX     |        150 |          9 |         10 |        169 |
+| c:\Users\norma\Documents\GitHub\tienda-online\components\card_producto.tsx                  | TypeScript JSX     |         57 |          0 |          6 |         63 |
+| c:\Users\norma\Documents\GitHub\tienda-online\components\layout.tsx                         | TypeScript JSX     |        150 |          8 |         14 |        172 |
+| c:\Users\norma\Documents\GitHub\tienda-online\components\modals\modal_venta.tsx             | TypeScript JSX     |         95 |          0 |         16 |        111 |
+| c:\Users\norma\Documents\GitHub\tienda-online\next.config.js                                | JavaScript         |          5 |          1 |          2 |          8 |
+| c:\Users\norma\Documents\GitHub\tienda-online\package-lock.json                             | JSON               |      8,071 |          0 |          1 |      8,072 |
+| c:\Users\norma\Documents\GitHub\tienda-online\package.json                                  | JSON               |         28 |          0 |          1 |         29 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\404.tsx                                 | TypeScript JSX     |         16 |          0 |          2 |         18 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\_app.js                                 | JavaScript         |          7 |          0 |          4 |         11 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\api\hello.js                            | JavaScript         |          3 |          1 |          2 |          6 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\carrito\index.tsx                       | TypeScript JSX     |        180 |          0 |         17 |        197 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\compras\mis_compras.tsx                 | TypeScript JSX     |         58 |          0 |          4 |         62 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\index.js                                | JavaScript         |         64 |          0 |          9 |         73 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\login\index.tsx                         | TypeScript JSX     |         54 |          0 |          5 |         59 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\productos\consultar_productos\index.tsx | TypeScript JSX     |         74 |          0 |         12 |         86 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\productos\registro_producto\index.tsx   | TypeScript JSX     |         63 |          0 |          8 |         71 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\productos\ver\index.tsx                 | TypeScript JSX     |         31 |          0 |          6 |         37 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\provedores\consultar.tsx                | TypeScript JSX     |         84 |          0 |         11 |         95 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\provedores\register.tsx                 | TypeScript JSX     |        107 |          0 |         11 |        118 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\register\index.tsx                      | TypeScript JSX     |        161 |          1 |         15 |        177 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\ventas\consultar_ventas\index.tsx       | TypeScript JSX     |          7 |          0 |          2 |          9 |
+| c:\Users\norma\Documents\GitHub\tienda-online\pages\ventas\registro_venta\index.tsx         | TypeScript JSX     |        100 |          0 |          9 |        109 |
+| c:\Users\norma\Documents\GitHub\tienda-online\public\vercel.svg                             | XML                |          4 |          0 |          0 |          4 |
+| c:\Users\norma\Documents\GitHub\tienda-online\services\auth.tsx                             | TypeScript JSX     |         61 |          0 |         14 |         75 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\Home.module.css                        | CSS                |        112 |          0 |         18 |        130 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\card_producto.module.scss              | SCSS               |         38 |          0 |          0 |         38 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\globals.css                            | CSS                |         23 |          0 |          4 |         27 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\layout.module.scss                     | SCSS               |         37 |          0 |          1 |         38 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\carrito.module.scss              | SCSS               |         95 |          0 |          9 |        104 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\login.module.scss                | SCSS               |         44 |          0 |          0 |         44 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\modal_venta.module.scss          | SCSS               |          9 |          0 |          0 |          9 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\productos.module.scss            | SCSS               |         22 |          0 |          0 |         22 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\register_provedor.module.scss    | SCSS               |         28 |          0 |          2 |         30 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\register_user.module.scss        | SCSS               |         28 |          0 |          2 |         30 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\registro_producto.module.scss    | SCSS               |         17 |          0 |          0 |         17 |
+| c:\Users\norma\Documents\GitHub\tienda-online\styles\pages\registro_venta.module.scss       | SCSS               |          8 |          0 |          1 |          9 |
+| c:\Users\norma\Documents\GitHub\tienda-online\tsconfig.json                                 | JSON with Comments |         29 |          0 |          1 |         30 |
+| c:\Users\norma\Documents\GitHub\tienda-online\utils\constants.tsx                           | TypeScript JSX     |          4 |          0 |          0 |          4 |
+| Total                                                                                       |                    |     10,148 |         20 |        235 |     10,403 |
++---------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

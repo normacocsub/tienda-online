@@ -4,7 +4,7 @@ import {
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
-  UserOutlined,
+  PlusCircleOutlined,
   HomeOutlined,
   AccountBookOutlined,
   ShoppingCartOutlined
@@ -60,12 +60,12 @@ const items: MenuItem[] = [
 
 const itemsAdmin: MenuItem[] = [
   getItem('Home', '1', <HomeOutlined />),
-  getItem('Productos', '1', <PieChartOutlined />, [
-    getItem('Registrar Producto', '3'),
+  getItem('Productos', '1', <PieChartOutlined id='productos' />, [
+    getItem('Registrar Producto', '3', <PlusCircleOutlined id='registroProducto'/>),
     getItem('Consultar Productos', '4')
   ]),
-  getItem('Provedor', '5', <AccountBookOutlined />, [
-    getItem('Registrar Provedor', '8'),
+  getItem('Provedor', '5', <AccountBookOutlined id='proveedor'/>, [
+    getItem('Registrar Provedor', '8', <PlusCircleOutlined id='registroProvedor'/>),
     getItem('Consultar Provedor', '9'),
   ]),
 
@@ -144,8 +144,8 @@ const LayoutUser: FunctionComponent<LayoutProps> = ({ children }) => {
           <h2>Tienda Online</h2>
           <div className={styles.buttonLogin}>
             {!logged && <>
-              <Button className={styles.logInButton} onClick={() => router.push('/login')}>Sing In</Button>
-              <Button className={styles.logUpButton} onClick={() => router.push('/register')}>Sing Up</Button>
+              <Button className={styles.logInButton} onClick={() => router.push('/login')} id='singInButton'>Sing In</Button>
+              <Button className={styles.logUpButton} onClick={() => router.push('/register')} id='singUpButton'>Sing Up</Button>
             </>
             }
             {

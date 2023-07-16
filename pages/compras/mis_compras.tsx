@@ -1,8 +1,8 @@
 import { Table } from "antd";
 import LayoutUser from "../../components/layout"
 import { useEffect, useState } from "react";
-import { render } from "sass";
 import { apiRestGet } from "../../services/auth";
+import generateInvoicePDF from "../../utils/generatePdf";
 
 const MisCompras = () => {
     const [dataSource, setDataSource] = useState([])
@@ -16,27 +16,31 @@ const MisCompras = () => {
           title: 'Fecha',
           dataIndex: 'fecha',
           key: 'fecha',
+          render: (fecha) => new Date(fecha).toLocaleDateString(),
         },
         {
           title: 'SubTotal',
           dataIndex: 'subTotal',
           key: 'subTotal',
+          render: (subTotal) => subTotal.toLocaleString('es-ES', { style: 'currency', currency: 'COP' }),
         },
         {
             title: 'IVA',
             dataIndex: 'iva',
             key: 'iva',
+            render: (iva) => iva.toLocaleString('es-ES', { style: 'currency', currency: 'COP' }),
         },
         {
             title: 'Total',
             dataIndex: 'total',
             key: 'total',
+            render: (total) => total.toLocaleString('es-ES', { style: 'currency', currency: 'COP' }),
         },
         {
             title: 'action',
             dataIndex: '',
             key: 'x',
-            render: () => <a>Ver factura</a>
+            render: (record) => <a onClick={() => generateInvoicePDF(record)}>Ver factura</a>
         }
       ];
 

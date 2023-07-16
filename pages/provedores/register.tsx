@@ -57,7 +57,7 @@ const Register = () => {
                     rules={[{ required: true, message: 'Por favor completa el nit' },
                     { min: 1, message: 'El nit debe tener al menos 1 carácter' },
                     { max: 9, message: 'El nit no puede tener más de 9 caracteres' }]}>
-                    <Input type="text" disabled={isModifying}/>
+                    <Input type="text" disabled={isModifying} id="nit"/>
                 </Form.Item>
 
                 <Form.Item label="Nombre" name={'nombre'}
@@ -68,20 +68,20 @@ const Register = () => {
                     }, { min: 3, message: 'El nombre debe tener al menos 3 carácter' },
                     { max: 50, message: 'El nombre no puede tener más de 50 caracteres' }
                     ]}>
-                    <Input type={'text'} />
+                    <Input type={'text'} id="nombre"/>
                 </Form.Item>
                 <Form.Item label="Apellido" name={'apellido'}
                     rules={[{ required: true, message: 'Por favor completa el apellido' },
                     { min: 3, message: 'El apellido debe tener al menos 3 carácter' },
                     { max: 50, message: 'El apellido no puede tener más de 50 caracteres' }]}>
-                    <Input type="text" />
+                    <Input type="text" id="apellido"/>
                 </Form.Item>
                 <Form.Item label="Direccion" name={'direccion'}
                     rules={[
                         { required: true, message: 'Por favor completa la direccion' },
                         { min: 3, message: 'La direccion debe tener al menos 3 carácter' },
                         { max: 100, message: 'La direccion no puede tener más de 100 caracteres' }]}>
-                    <Input type="text" />
+                    <Input type="text" id="direccion" />
                 </Form.Item>
 
                 <Form.Item label="Celular" name={'celular'}
@@ -98,7 +98,7 @@ const Register = () => {
                         pattern: /^[0-9]+$/,
                         message: 'solo puede contener números',
                     }]}>
-                    <Input type="number" />
+                    <Input type="number" id="celular"/>
                 </Form.Item>
 
                 
@@ -106,7 +106,7 @@ const Register = () => {
                 
 
                 <Form.Item className={styles.button}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" id="guardar">
                         { isModifying ? 'Modificar' : 'Guardar'}
                     </Button>
                 </Form.Item>

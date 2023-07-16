@@ -20,7 +20,7 @@ const Login = () => {
             Password:values.password,
         })
         console.log(response)
-        if (response) {
+        if (response.correo) {
             router.push('/')
             localStorage.setItem('login', JSON.stringify({ correo: response.correo, rol: response.rolId }))
             router.push('/')
@@ -36,15 +36,15 @@ const Login = () => {
             <Form form={form} className={styles.form} layout="vertical"
                 name="login" onFinish={onFinish} >
                 <Form.Item label={'Correo'} name={'correo'} className={styles.item} >
-                    <Input />
+                    <Input id="correo"/>
                 </Form.Item>
 
                 <Form.Item label={'Contraseña'} name={'password'} className={styles.item} >
-                    <Input />
+                    <Input id="password"/>
                 </Form.Item>
 
                 <Form.Item>
-                    <Button className={styles.button} htmlType="submit">Login</Button>
+                    <Button className={styles.button} htmlType="submit" id="loginBtn">Login</Button>
                 </Form.Item>
             </Form>
             {
